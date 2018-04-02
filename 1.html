@@ -11,5 +11,86 @@
     <script src="1.js" defer></script>
   </head>
   <body>
+    <h1>ANDANDO NO MAPA</h1>
+    <hr>
+    <h2>referências</h2>
+<pre><code class="javascript">
+const vetor = new Array()
+vetor.push({
+  id: 'zero'
+})
+vetor.push({
+  id: 'um'
+})
+
+console.log(JSON.stringify(vetor, null, 2))
+
+// dupla
+vetor[0].depois = vetor[1]
+vetor[1].depois = vetor[0]
+
+/**
+ * vetor[0].depois.depois.depois.depois.depois.depois.depois.depois
+ * o que acontece?
+ */
+
+// JSON.stringify(vetor, null, 2)
+</code></pre>
+  <hr>
+  <h2>agentes que circulam</h2>
+<pre><code class="javascript">
+let aux = vetor[0]
+let caminho = ""
+for (let i = 0; i < 9; i++) {
+  caminho += aux.id + ' -> '
+  aux = aux.depois
+}
+
+/**
+ * completar vetor até 9 elementos
+ */
+
+// recursivo
+</pre></code>
+  <hr>
+  <h2>vizinhos</h2>
+<pre><code class="javascript">
+/**
+ * a - b - c
+ * |       |
+ * d - e - f
+ *     |   |
+ * g - h - i
+ */
+
+ mapa[0] = {
+   id: 'a',
+   tesouro: false,
+   vizinhos: [
+     mapa[1],
+     mapa[3]
+   ]
+ }
+
+entrada = mapa[Math.trunc(Math.random() * mapa.length)]
+mapa[Math.trunc(Math.random() * mapa.length)].tesouro = true
+</pre></code>
+  <hr>
+  <h2>tabelando</h2>
+<pre><code class="javascript">
+const div = document.getElementById('tabelando')
+
+let table = ''
+for (let i = 0; i < 3; i++) {
+  table += '&lt;tr&gt;'
+  for (let j = 0; j < 3; j++) {
+    table += `&lt;td&gt;${i + 1}${j + 1}&lt;/td&gt;`
+  }
+  table += '&lt;/tr&gt;'
+}
+
+div.innerHTML = '&lt;table&gt;' +  table + '&lt;/table&gt;'
+</pre></code>
+  <div id="tabelando"></div>
   </body>
 </html>
