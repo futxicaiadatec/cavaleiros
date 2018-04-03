@@ -94,23 +94,23 @@ entrada = entrada[Math.trunc(Math.random() * entrada.length)]
 /**
  * 1.4
  */
-const vizinhos = function vizinhos ({coluna: i, linha: j}) {
+const vizinhos = function vizinhos ({linha: i, coluna: j}) {
   return [
     {
-      coluna: i,
-      linha: j + 1
+      coluna: i - 1,
+      linha: j
     },
     {
       coluna: i,
-      linha: j - 1
+      linha: j + 1
     },
     {
       coluna: i + 1,
       linha: j
     },
     {
-      coluna: i - 1,
-      linha: j
+      coluna: i,
+      linha: j - 1
     }
   ]
 }
