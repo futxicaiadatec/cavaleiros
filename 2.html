@@ -3,31 +3,97 @@
   <head>
     <meta charset="utf-8">
     <title>CZ 2</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="stl.css">
-	<link rel="stylesheet" href="highlight.css">
-	<script src="highlight.pack.js"></script>
-	<script>hljs.initHighlightingOnLoad()</script>
-  <script src="2.js" defer></script>
+    <link rel="stylesheet" href="highlight.css">
+    <script src="highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad()</script>
+    <script src="2.js" defer></script>
   </head>
   <body>
     <h1>ORIENTANDO-SE NO MAPA</h1>
     <hr>
     <h2>tabelando</h2>
 <pre><code class="javascript">
-const div = document.getElementById('tabelando')
-
-let table = ''
-for (let i = 0; i < 7; i++) {
-  table += '&lt;tr&gt;'
-  for (let j = 0; j < 7; j++) {
-    table += `&lt;td id='c${i}-l${j}'&gt;&lt;/td&gt;`
-  }
-  table += '&lt;/tr&gt;'
-}
-
-div.innerHTML = '&lt;table&gt;' +  table + '&lt;/table&gt;'
+  /**
+   * tabela = 7x7 objetos tipo: {
+   *   linha: i,
+   *   coluna: j,
+   *   jaPasseiAqui: false,
+   *   dom: td#linha-3_coluna-3
+   * }
+   */
+const entrada = tabela[3][3]
+entrada.dom.innerText = 'o'
+entrada.jaPasseiAqui = true
 </pre></code>
     <div id="tabelando"></div>
+    <hr>
+    <h2>vizinhos</h2>
+<pre><code class="javascript">
+console.dir(
+  vizinhos(entrada).map(
+    e => tabela[e.coluna][e.linha]
+  )
+)
+
+const aux = []
+aux.push(...vizinhos(entrada).map(e => tabela[e.coluna][e.linha]))
+</pre></code>
+  <hr>
+  <h2>animação 1s</h2>
+<pre><code class="javascript">
+function poprint () {
+  setTimeout(function () {
+    const toPrintNow = aux.pop()
+    toPrintNow.dom.innerText += '*'
+
+    aux.length !== 0 && poprint()
+  }, 1000)
+}
+poprint()
+</pre></code>
+  <hr>
+  <h2>poprint desempilhadora</h2>
+<pre><code class="javascript">
+/**
+ * aux = [tabela[0][0], tabela[0][1], tabela[0][2], tabela[1][2]]
+ */
+aux.push(tabela[0][0])
+aux.push(tabela[0][1])
+aux.push(tabela[0][2])
+aux.push(tabela[1][2])
+
+poprint()
+</pre></code>
+  <hr>
+  <h2>explorando o ultimo</h2>
+  <img src="buscaProfunda.jpg" alt="busca profunda">
+<pre><code class="javascript">
+vizinhos(entrada).map(e => tabela[e.coluna][e.linha]).forEach(
+  e => e.dom.innerText = ''
+)
+aux.push(...vizinhos(entrada).map(e => tabela[e.coluna][e.linha]))
+aux.push(...vizinhos(aux[aux.length - 1]).map(e => tabela[e.coluna][e.linha]))
+</pre></code>
+  <hr>
+  <h2>cólera profunda</h2>
+<pre><code class="javascript">
+aux.push(entrada)
+coleraProfunda()
+
+// por dentro coleraProfunda:
+let lastAux = aux.pop()
+lastAux.dom.innerText = '#'
+lastAux.jaPasseiAqui = true
+
+let lastAuxVizinhos = vizinhos(lastAux).map(e => tabela[e.coluna][e.linha])
+let lastAuxVizinhosNovos = lastAuxVizinhos.filter(e => !e.jaPasseiAqui)
+
+lastAuxVizinhosNovos.forEach(function (e) {
+  e.dom.innerText = '*'
+})
+aux.push(...lastAuxVizinhosNovos)
+</pre></code>
   </body>
 </html>
