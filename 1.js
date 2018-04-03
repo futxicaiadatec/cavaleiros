@@ -94,15 +94,23 @@ entrada = entrada[Math.trunc(Math.random() * entrada.length)]
 /**
  * 1.4
  */
-const div = document.getElementById('tabelando')
-
-let table = ''
-for (let i = 0; i < 3; i++) {
-  table += '<tr>'
-  for (let j = 0; j < 3; j++) {
-    table += `<td> ${i + 1}${j + 1} </td>`
-  }
-  table += '</tr>'
+const vizinhos = function vizinhos ({coluna: i, linha: j}) {
+  return [
+    {
+      coluna: i,
+      linha: j + 1
+    },
+    {
+      coluna: i,
+      linha: j - 1
+    },
+    {
+      coluna: i + 1,
+      linha: j
+    },
+    {
+      coluna: i - 1,
+      linha: j
+    }
+  ]
 }
-
-div.innerHTML = '<table>' + table + '</table>'

@@ -8,8 +8,26 @@
 	<link rel="stylesheet" href="highlight.css">
 	<script src="highlight.pack.js"></script>
 	<script>hljs.initHighlightingOnLoad()</script>
-    <script src="2.js" defer></script>
+  <script src="2.js" defer></script>
   </head>
   <body>
+    <h1>ORIENTANDO-SE NO MAPA</h1>
+    <hr>
+    <h2>tabelando</h2>
+<pre><code class="javascript">
+const div = document.getElementById('tabelando')
+
+let table = ''
+for (let i = 0; i < 7; i++) {
+  table += '&lt;tr&gt;'
+  for (let j = 0; j < 7; j++) {
+    table += `&lt;td id='c${i}-l${j}'&gt;&lt;/td&gt;`
+  }
+  table += '&lt;/tr&gt;'
+}
+
+div.innerHTML = '&lt;table&gt;' +  table + '&lt;/table&gt;'
+</pre></code>
+    <div id="tabelando"></div>
   </body>
 </html>

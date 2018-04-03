@@ -8,7 +8,8 @@
 	<link rel="stylesheet" href="highlight.css">
 	<script src="highlight.pack.js"></script>
 	<script>hljs.initHighlightingOnLoad()</script>
-    <script src="1.js" defer></script>
+  <script src="1.js" defer></script>
+  <script src="mapa.js" defer></script>
   </head>
   <body>
     <h1>ANDANDO NO MAPA</h1>
@@ -53,7 +54,7 @@ for (let i = 0; i < 9; i++) {
 // recursivo
 </pre></code>
   <hr>
-  <h2>vizinhos</h2>
+  <h2>tesouro</h2>
 <pre><code class="javascript">
 /**
  * a - b - c
@@ -61,6 +62,9 @@ for (let i = 0; i < 9; i++) {
  * d - e - f
  *     |   |
  * g - h - i
+ *
+ * O tesouro é colocado aleatoriamente no mapa
+ * A entrada é escolhida aleatoriamente
  */
 
  mapa[0] = {
@@ -76,21 +80,40 @@ entrada = mapa[Math.trunc(Math.random() * mapa.length)]
 mapa[Math.trunc(Math.random() * mapa.length)].tesouro = true
 </pre></code>
   <hr>
-  <h2>tabelando</h2>
+  <h2>vizinhos</h2>
 <pre><code class="javascript">
-const div = document.getElementById('tabelando')
+/**
+ * matriz contendo o mapa
+ * p: plano
+ * r: rochoso
+ * m: montanhoso
+ * [0-12]: casas
+ */
+mapa.length// 42
+mapa[0].length// 42
 
-let table = ''
-for (let i = 0; i < 3; i++) {
-  table += '&lt;tr&gt;'
-  for (let j = 0; j < 3; j++) {
-    table += `&lt;td&gt;${i + 1}${j + 1}&lt;/td&gt;`
-  }
-  table += '&lt;/tr&gt;'
+function vizinhos ({coluna: i, linha: j}) {
+  return [
+    {
+      coluna: i,
+      linha: j + 1
+    },
+    {
+      coluna: i,
+      linha: j - 1
+    },
+    {
+      coluna: i + 1,
+      linha: j
+    },
+    {
+      coluna: i - 1,
+      linha: j
+    }
+  ]
 }
-
-div.innerHTML = '&lt;table&gt;' +  table + '&lt;/table&gt;'
+// filtre os vizinhos positivos e menores que 42
+// filtre os vizinhos numéricos, planos e rochosos
 </pre></code>
-  <div id="tabelando"></div>
   </body>
 </html>
