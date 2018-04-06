@@ -3,13 +3,84 @@
   <head>
     <meta charset="utf-8">
     <title>CZ 5</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="stl.css">
-	<link rel="stylesheet" href="highlight.css">
-	<script src="highlight.pack.js"></script>
-	<script>hljs.initHighlightingOnLoad()</script>
+    <link rel="stylesheet" href="highlight.css">
+    <script src="highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad()</script>
     <script src="5.js" defer></script>
+    <script src="extendArray.js"></script>
   </head>
   <body>
+    <h1>TROCA TROCA</h1>
+    <hr>
+    <h2>conferindo</h2>
+<pre><code class="javascript">
+// exemplo soma
+let arr = [2, 2, 2, 2, 2]
+arr.reduce(  (a, b) => a + b  , 0)
+
+const quantasBatalhas = c => c.reduce(
+  (a, b) => a + b.length
+, 0)
+</pre></code>
+<pre><code class="javascript">
+// ex segunda ocorrência
+let arr2 = ['a', 'e', 'i', 'a', 'u']
+arr2.indexOf('a', arr2.indexOf('a') + 1)
+
+// ex ternário
+let duvida = -1 === -1 ? 'é igual' : 'não é igual'
+
+const haRepetido = c => c.some(
+  (e, i, c) => c.indexOf(e, c.indexOf(e) + 1) === -1 ? false : true)
+)
+
+// como conferir se não haRepetido em todas as casas?
+</pre></code>
+  <hr>
+  <h2>move cavaleiro</h2>
+<pre><code class="javascript">
+// ex clone
+let casas2 = casas.map(e => [...e])
+let casas3 = casas.map(e => object.assign([], e))
+
+/**
+ * Fução que gera uma nova configuração de batalha
+ * @param  {float[][]}      casas - configuração inicial
+ * @param  {int} h          house - índice casa de origem
+ * @param  {int} k          knight - índice do cavaleiro
+ * @param  {int} d          destino - índice da casa de destino
+ * @return {float[][]}      casas - nova configuração
+ */
+function moveCavaleiro (casas, h, k, d) {
+  // EITA!!!
+}
+</pre></code>
+  <hr>
+  <h2>move cavaleiro aleatório</h2>
+<pre><code class="javascript">
+// let idx
+// const arr = ['a', 'e', 'i', 'o', 'u']
+// console.log(`arr[idx = 3] = ${arr[idx = 3]}`)
+
+const moveCavaleiroRandom = function moveCavaleiroRandom (casas) {
+  let casaOrigem
+  // a origem não pode ser uma casa com apenas 1 cavaleiro
+  while (casas[casaOrigem = Math.floor(casas.length * Math.random())].length === 1);
+  const cavaleiroOrigem = Math.floor(casas[casaOrigem].length * Math.random())
+
+  let casaDestino
+  // o destino não pode ser uma casa que já possui o cavaleiro de origem
+  // O destino não pode ter 5 cavaleiros
+  while (
+    casas[casaDestino = Math.floor(casas.length * Math.random())].find(el => el === casas[casaOrigem][cavaleiroOrigem]) ||
+    casas[casaDestino].length === 5);
+
+  console.log(`casas[${casaOrigem}][${cavaleiroOrigem}] --> casas[${casaDestino}]`)
+
+  return moveCavaleiro(casas, casaOrigem, cavaleiroOrigem, casaDestino)
+}
+</pre></code>
   </body>
 </html>
