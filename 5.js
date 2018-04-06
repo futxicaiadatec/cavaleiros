@@ -34,11 +34,11 @@ const haRepetido = c => c.some((e, i, c) => c.indexOf(e, c.indexOf(e) + 1) === -
  * 5.3
  */
 const moveCavaleiro = (casas, h, k, d) => casas.map(e => [...e]).map(
-  (e, i, a) => e.filter(
-    (_, ii) => i !== h || ii !== k
+  (e, i) => e.filter(
+    (_, j) => i !== h || j !== k
   )
-).map(
-  (e, i) => extendArray(e).sew( i === d ? casas[h][k] : null)
+).map(extendArray).map(
+  (e, i) => e.sew(i === d ? casas[h][k] : null)
 )
 
 /**
@@ -46,13 +46,10 @@ const moveCavaleiro = (casas, h, k, d) => casas.map(e => [...e]).map(
  */
  const moveCavaleiroRandom = function moveCavaleiroRandom (casas) {
    let casaOrigem
-   // a origem não pode ser uma casa com apenas 1 cavaleiro
    while (casas[casaOrigem = Math.floor(casas.length * Math.random())].length === 1);
    const cavaleiroOrigem = Math.floor(casas[casaOrigem].length * Math.random())
 
    let casaDestino
-   // o destino não pode ser uma casa que já possui o cavaleiro de origem
-   // O destino não pode ter 5 cavaleiros
    while (
      casas[casaDestino = Math.floor(casas.length * Math.random())].find(
        el => el === casas[casaOrigem][cavaleiroOrigem]

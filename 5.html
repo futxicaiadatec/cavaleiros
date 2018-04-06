@@ -45,6 +45,17 @@ const haRepetido = c => c.some(
 let casas2 = casas.map(e => [...e])
 let casas3 = casas.map(e => object.assign([], e))
 
+// ex percorrendo matriz
+let M3x3 = [
+  ["","",""],
+  ["","",""],
+  ["","",""]
+].map(
+  (e, i) => e.map(
+    (_, j) => `${i}-${j}`
+  )
+)
+
 /**
  * Fução que gera uma nova configuração de batalha
  * @param  {float[][]}      casas - configuração inicial
@@ -58,11 +69,16 @@ function moveCavaleiro (casas, h, k, d) {
 }
 </pre></code>
   <hr>
-  <h2>move cavaleiro aleatório</h2>
+  <h2>move random</h2>
+  <img src="moveRandon.jpg" alt="move randon">
 <pre><code class="javascript">
 // let idx
 // const arr = ['a', 'e', 'i', 'o', 'u']
 // console.log(`arr[idx = 3] = ${arr[idx = 3]}`)
+
+// while ( false || false ) {
+//  apenas desarma se todos os "OU" forem falsos
+// }
 
 const moveCavaleiroRandom = function moveCavaleiroRandom (casas) {
   let casaOrigem
@@ -74,10 +90,10 @@ const moveCavaleiroRandom = function moveCavaleiroRandom (casas) {
   // o destino não pode ser uma casa que já possui o cavaleiro de origem
   // O destino não pode ter 5 cavaleiros
   while (
-    casas[casaDestino = Math.floor(casas.length * Math.random())].find(el => el === casas[casaOrigem][cavaleiroOrigem]) ||
-    casas[casaDestino].length === 5);
-
-  console.log(`casas[${casaOrigem}][${cavaleiroOrigem}] --> casas[${casaDestino}]`)
+    casas[casaDestino = Math.floor(casas.length * Math.random())].find(
+      el => el === casas[casaOrigem][cavaleiroOrigem]
+    ) || casas[casaDestino].length === 5
+  );
 
   return moveCavaleiro(casas, casaOrigem, cavaleiroOrigem, casaDestino)
 }
