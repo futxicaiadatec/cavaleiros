@@ -3,13 +3,39 @@
   <head>
     <meta charset="utf-8">
     <title>CZ 6</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="stl.css">
-	<link rel="stylesheet" href="highlight.css">
-	<script src="highlight.pack.js"></script>
-	<script>hljs.initHighlightingOnLoad()</script>
+    <link rel="stylesheet" href="highlight.css">
+    <script src="highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad()</script>
     <script src="6.js" defer></script>
+    <script src="extendArray.js"></script>
   </head>
   <body>
+    <h1>DARWIN</h1>
+    <hr>
+    <img src="eggs.jpg" alt="muitos ovos">
+    <h2>gerando filhotes</h2>
+<pre><code class="javascript">
+const darwin = []
+for (let i = 0; i < 12; i++) {
+  const casas = moveCavaleiroRandom(casas0)
+  const tempo = tempoBatalha(casas)
+  darwin.push({casas, tempo})
+}
+</pre></code>
+  <hr>
+  <h2>seleção natural</h2>
+<pre><code class="javascript">
+const  a = [
+  {criterio: 2.3},
+  {criterio: 1.7},
+  {criterio: 3.4}
+]
+
+a.sort(
+  (a, b) => a.criterio - b.criterio
+)
+</pre></code>
   </body>
 </html>
